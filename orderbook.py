@@ -191,6 +191,25 @@ class OrderBook(object):
 # TODO: support market order
 # TODO: performance testing
 # TODO: get rid of Order object for input? just store them internally?    
+def _unittest2():
+    book = OrderBook("BTCUSD")
+    orders = [(0, 3, 200, "Bea"),
+              (1, 2, 201, "Sam"),
+              (0, 2, 200, "Ben"),
+              (1, 1, 198, "Sol"),
+              (1, 5, 202, "Stu"),
+              (0, 2, 201, "Bif"),
+	      (0, 2, 202, "Bif"),
+              (0, 2, 201, "Bob"),
+              (1, 6, 200, "Sue"),
+              (0, 7, 198, "Bud"),]
+    for i, order in enumerate(orders):
+      #print "STEP %d" % i
+      #print book.render()
+      book.limit_order(*order)
+      #print
+    print
+    print book.render()
      
 def _unittest1():
     ob = OrderBook("BTCUSD")
@@ -239,6 +258,9 @@ def _perftest():
     raw_input()
         
 if __name__ == "__main__":
+    _unittest2()
+    import sys
+    sys.exit(0)
     #_unittest1()
     #_perftest(
     import time
